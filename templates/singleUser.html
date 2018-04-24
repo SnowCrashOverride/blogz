@@ -1,0 +1,31 @@
+{% extends "newbase.html" %}
+
+
+
+{% block content %}
+
+    <h1>blogs</h1>
+
+    {% if blogs_by|length == 0 %}
+    <p>No blogs</p>
+    {% else %}
+
+    
+        {% for blog in blogs_by %}
+        
+        <a href='/blog?id={{ blog.id }}' >
+            <h2 type='text' name='title' value='{{ blog.title }}'>
+            {{ blog.title }}</h2></a>
+          
+            <h5>{{blog.body}}</h5>
+                
+            <em> written by </em><em type='text' name='owner' value='{{ blog.owner.username }}'>
+                <a href='/blog?user={{ blog.owner.id }}' >{{ blog.owner.username }}</a></em>
+                    
+  
+        {% endfor %}
+    
+    {% endif %}
+           
+        
+{% endblock %} 

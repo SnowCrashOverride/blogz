@@ -1,14 +1,14 @@
-{% extends "base.html" %}
+{% extends "newbase.html" %}
 
 
 {% block content %}
 
-    <h1>Build a Blog</h1>
+    <h1>blogs</h1>
     
     <hr />
 
     {% if blogs|length == 0 %}
-    <p>No posts yet</p>
+    <p>No blogs</p>
     {% else %}
 
         
@@ -19,6 +19,10 @@
                 {{ blog.title }}</h2></a>
               
                 <h5>{{blog.body}}</h5>
+                    
+                <em> written by </em><em type='text' name='owner' value='{{ blog.owner.username }}'>
+                    <a href='/blog?user={{ blog.owner.id }}' >{{ blog.owner.username }}</a></em>
+                        
       
             {% endfor %}
         

@@ -1,21 +1,31 @@
-{% extends "base.html" %}
-
+{% extends 'newbase.html' %}
 {% block content %}
-    <h1>Time to Blog!</h1>
-    <form method='post'>
-        <label>
-            Blog title:
-            <input type="text" name='title' value="{{ blog_title }}" />
-            <span class="error">{{ title_error }}</span>
-        </label>
+<h1>Make a new blog</h1>
+<form action ='/newpost' method = 'post'>
+    <table>
+        <tr>
+            <td>
+            <label>
+                Blog title:</br>
+                <input type="text" name='title' value='{{title}}'/>
+                <p class="error">{{title_error}}</p>
+            </label>
+            </td>
+            <tr>
+                <td>
+                <label>
+                Write your blog:</br>
+                <textarea name="body" rows="12" cols="75" value='{{body}}'></textarea>
+                <p class="error">{{body_error}}</p>
+                </label>
+               </td>
+            </tr>
+           <tr>
+               <td>
+                    <input type="submit" value='Finish' />
+               </td>
+           </tr>
+        </table> 
+</form>
 
-        <hr />
-        
-        <label>
-            Blog here:
-        </label>
-            <textarea type="text" name='body' value="{{ blog_body }}">{{ blog_body }}</textarea>
-            <span class="error">{{ body_error }}</span>
-            <input type="submit" value='Add Entry' />
-    </form>
-{% endblock %} 
+{% endblock %}

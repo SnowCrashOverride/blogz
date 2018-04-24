@@ -1,8 +1,4 @@
 
-{% extends "newbase.html" %}
-
-{% block content %}
-
 <h1>Login</h1>
   <form method="post">
     <table>
@@ -19,18 +15,8 @@
           <input name="password" type="password">
           <span class="error">{{password_error}}</span>
         </td>
-
-        {% with messages = get_flashed_messages(with_categories=True) %}
-        
-        {% for category,message in messages %}
-            <p class="error">{{ message }}</p>
-        {% endfor %}
-
-    {% endwith %}
+      </tr>
     </table>
     <input type="submit" value="Login">
-</form>
-
-<p>Need to Signup? <a href="/signup">Create A New Account</a></p>
-
-{% endblock %}
+  </form>
+  <p>Need to Singup? <a href="/signup">Create A New Account</a></p>

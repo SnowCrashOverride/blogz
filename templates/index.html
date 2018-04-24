@@ -1,0 +1,18 @@
+{% extends "newbase.html" %}
+
+{% block content %}
+    <h1>blogs</h1>
+
+    {% if users|length == 0 %}
+    <p>No users have posted yet</p>
+    {% else %}
+
+        <li>
+            {% for owner in users %}
+            <li><a href="blog?user={{ owner.id }}"><h2>{{ owner.username }}</h2></li>
+            {% endfor %}
+        </li>
+
+    {% endif %}
+
+{% endblock %}
