@@ -1,30 +1,67 @@
 {% extends 'newbase.html' %}
 {% block content %}
-<h1>Make a new blog</h1>
+<h1>Add an Album</h1>
 <form action ='/newpost' method = 'post'>
+    <hr />
     <table>
         <tr>
             <td>
             <label>
-                Blog title:</br>
+                Album title:</br>
                 <input type="text" name='title' value='{{title}}'/>
                 <p class="error">{{title_error}}</p>
             </label>
             </td>
-            <tr>
-                <td>
-                <label>
-                Write your blog:</br>
-                <textarea name="body" rows="12" cols="75" value='{{body}}'></textarea>
-                <p class="error">{{body_error}}</p>
-                </label>
-               </td>
-            </tr>
-           <tr>
-               <td>
-                    <input type="submit" value='Finish' />
-               </td>
-           </tr>
+        </tr>
+        <tr>
+            <td>
+            <label>
+                Album artist:</br>
+                <input type="text" name='artist' value='{{artist}}'/>
+                <p class="error">{{title_error}}</p>
+            </label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            <label>
+                Add album image:</br>
+                </br>
+                <form action="/action_page.php">
+                Album image link: <input type="text" name="cover" value='{{cover}}'><br>
+                </form> 
+                <p class="error">{{cover_error}}</p>
+            </label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            <label>
+               <! Rating:</br>
+               <! <input type="text" name='title' value='{{rating}}'/>
+               <! <p class="error">{{rating_error}}</p>
+            </label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            <label>
+                <fieldset>           
+                <div>
+                <label for="date">Date listened to:</label>
+                <input type="date" name="date" value='{{date}}'                             
+                min="2018-01-01" max="2018-12-31" />
+                </div>
+                <p class="error">{{date_error}}</p>
+            </label>
+            </td>
+        </tr>
+        <tr>
+            <td>    
+            </br>
+            <input type="submit" value='Finish' />
+            </td>
+        </tr>
         </table> 
 </form>
 

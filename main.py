@@ -3,23 +3,29 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://blogz:blogz@localhost:8889/blogz'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://goodmusics:goodmusics@localhost:8889/goodmusics'
 app.config['SQLALCHEMY_ECHO'] = True
 db = SQLAlchemy(app)
 app.secret_key = 'thx1138'
 
 
-class Blog(db.Model):
+class Music(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(120))
-    body = db.Column(db.String(500))
+    artist = db.Column(db.String(120))
+    cover = db.Column(db.String(500))
+    """rating = db.Column(db.String(120))"""
+    date = db.Column(db.String(120))
     owner_id = db.Column(db.Integer, db.ForeignKey('user.id'))
    
 
-    def __init__(self, title, body, owner):
+    def __init__(self, title, artist, cover, date, owner):
         self.title = title
-        self.body = body
+        self.artist = artist
+        self.cover = cover
+       # self.rating = rating
+        self.date = date
         self.owner = owner
         
 class User(db.Model):
@@ -27,7 +33,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(120), unique=True)
     password = db.Column(db.String(120))
-    blogs = db.relationship('Blog', backref='owner')
+    musics = db.relationship('Music', backref='owner')
 
     def __init__(self, username, password):
         self.username = username
@@ -37,7 +43,7 @@ class User(db.Model):
 
 @app.before_request
 def require_login():
-    allowed_routes = ['login', 'signup', 'blog', 'index']
+    allowed_routes = ['login', 'signup', 'music', 'index']
     if request.endpoint not in allowed_routes and 'username' not in session:
         return redirect('/login')
 
@@ -120,67 +126,73 @@ def signup():
             
 
 
-@app.route('/blog', methods=['POST', 'GET'])
-def blog():
+@app.route('/music', methods=['POST', 'GET'])
+def music():
     
     user = request.args.get('user')
     id = request.args.get('id')
     
     if user:
-        blogs_by = Blog.query.filter_by(owner_id=user).all()
-        return render_template('singleUser.html', blogs_by=blogs_by)
+        musics_by = Music.query.filter_by(owner_id=user).all()
+        return render_template('singleUser.html', musics_by=musics_by)
 
     if id:
-        blogs = Blog.query.filter_by(id=id).all()
-        return render_template('blog.html', blogs=blogs)
+        musics = Music.query.filter_by(id=id).all()
+        return render_template('music.html', musics=musics)
     
     else:
-        blogs = Blog.query.all()
-        return render_template('blog.html', blogs=blogs)
+        musics = Music.query.all()
+        return render_template('music.html', musics=musics)
 
 
     
 @app.route('/newpost', methods=['POST', 'GET'])
 def new_post():
     title_error = "Title it!"
-    body_error = "Write somthing!"
+    artist_error = "Who is the artist?"
+    cover_error = "Add a cover!"
+    #rating_error = "Rate it!"
+    date_error = "Add the date"
 
 
     if request.method == 'GET':
         return render_template('newpost.html')
 
     if request.method == 'POST':
-        blog_title = request.form['title']
-        blog_body = request.form['body']
+        music_title = request.form['title']
+        music_artist = request.form['artist']
+        music_cover = request.form['cover']
+        #music_rating = request.form['rating']
+        music_date = request.form['date']
 
         
-        if (not blog_title) or (blog_title.strip() == ""):
-            if (not blog_body) or (blog_body.strip() == ""):
-                return render_template('newpost.html', blog_title=blog_title, blog_body=blog_body, title_error=title_error, body_error=body_error)  
+        if (not music_title) or (music_title.strip() == ""):
+            if (not music_cover) or (music_cover.strip() == ""):
+                return render_template('newpost.html', music_title=music_title, music_cover=music_cover, title_error=title_error, cover_error=cover_error)  
             else:
-                return render_template('newpost.html', blog_title=blog_title, blog_body=blog_body, title_error=title_error)
+                return render_template('newpost.html', music_title=music_title, music_cover=music_cover, title_error=title_error)
 
-        if (not blog_body) or (blog_body.strip() == ""):
-            return render_template('newpost.html', blog_title=blog_title, blog_body=blog_body, body_error=body_error)
+        if (not music_cover) or (music_cover.strip() == ""):
+            return render_template('newpost.html', music_title=music_title, music_cover=music_cover, cover_error=cover_error)
 
-        if (not blog_title) or (blog_title.strip() == "") and (not blog_body) or (blog_body.strip() == ""): 
-            return render_template('newpost.html', blog_title=blog_title, blog_body=blog_body, title_error=title_error, body_error=body_error)  
+        if (not music_title) or (music_title.strip() == "") and (not music_cover) or (music_cover.strip() == ""): 
+            return render_template('newpost.html', music_title=music_title, music_cover=music_cover, title_error=title_error, cover_error=cover_error)  
         
         else: 
-            blog_owner = User.query.filter_by(username=session['username']).first()
-            new_post = Blog(blog_title, blog_body, blog_owner) # user.id
+            music_owner = User.query.filter_by(username=session['username']).first()
+            new_post = Music(music_title, music_artist, music_cover,  music_date, music_owner) # user.id
             db.session.add(new_post)
             db.session.commit()
-            just_posted = db.session.query(Blog).order_by(Blog.id.desc()).first()
+            just_posted = db.session.query(Music).order_by(Music.id.desc()).first()
             id = str(just_posted.id)
-            return redirect('/blog?id=' + id)
+            return redirect('/music?id=' + id)
 
 
 
 @app.route('/logout')
 def logout():
     del session['username']
-    return redirect('/blog')
+    return redirect('/music')
     
 
 

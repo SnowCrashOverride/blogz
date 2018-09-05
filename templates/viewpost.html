@@ -2,11 +2,12 @@
 
 {% block content %}
 
-<h1> {{blog.title}} </h1>
-<p>
-    {{blog.body}}
-</p>
-<p>Post by: <a href="/blog?user={{blog.owner_id}}">{{blog.owner.username}}</a></p>
+<h1> {{music.title}} </h1>
+<h2> {{music.artist}}</h2>
+<h2><img src = "{{music.cover}}" style=width:200px;height:200px;> </h2>
+<!<h5> <!{{music.rating}}</h5>
+<h5>{{ music.date }}</h5>
+<p>added by: <a href="/music?user={{music.owner_id}}">{{music.owner.username}}</a></p>
 
 
 #value="Create account">

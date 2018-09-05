@@ -4,25 +4,27 @@
 
 {% block content %}
 
-    <h1>blogs</h1>
+    <h1>musics</h1>
 
-    {% if blogs_by|length == 0 %}
-    <p>No blogs</p>
+    {% if musics_by|length == 0 %}
+    <p>No musics</p>
     {% else %}
 
     
-        {% for blog in blogs_by %}
-        
-        <a href='/blog?id={{ blog.id }}' >
-            <h2 type='text' name='title' value='{{ blog.title }}'>
-            {{ blog.title }}</h2></a>
+        {% for music in musics_by %}
+        <footer>
+        <a href='/music?id={{ music.id }}' >
+            <h2 type='text' name='title' value='{{ music.title }}'>
+            {{ music.title }}</h2></a>
           
-            <h5>{{blog.body}}</h5>
+            <h2><img src = "{{music.cover}}" style=width:200px;height:200px;> </h2>
+            <h5><!{{ music.rating }}</h5>
+            <h5>{{ music.date }}</h5>
                 
-            <em> written by </em><em type='text' name='owner' value='{{ blog.owner.username }}'>
-                <a href='/blog?user={{ blog.owner.id }}' >{{ blog.owner.username }}</a></em>
-                    
-  
+            <em> added by </em><em type='text' name='owner' value='{{ music.owner.username }}'>
+                <a href='/music?user={{ music.owner.id }}' >{{ music.owner.username }}</a></em>
+        <br>            
+        </footer>        
         {% endfor %}
     
     {% endif %}
