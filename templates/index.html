@@ -1,26 +1,32 @@
 {% extends "newnewbase.html" %}
 
 {% block content %}
-<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='newstyles.css') }}">
-    <h1>Users</h1>
 
-    <hr />
 
     {% if users|length == 0 %}
-    <p>No albums yet</p>
+    <p>No users yet</p>
     {% else %}
-
-
-        <li>
-            
+    <style>
+            .bg-3 {
+                background: #2d2d30;
+                color: #bdbdbd;
+            }
+            .bg-3 h3 {color: #fff;}
+            .bg-3 p {font-style: italic;}
+            </style>
+        <h1>Users</h1>
+        <hr />
+        <div class="bg-3">
+            <div class="container">
             {% for owner in users %}
+            
             <li>    
                 <div class="userlink"></div>
-                    <a href="music?user={{ owner.id }}"><h2>{{ owner.username }}</h2></li>
-                </div>
+                    <a href="music?user={{ owner.id }}"><h2>{{ owner.username }}</h2>
+            </li>
+              
             <br>
             {% endfor %}
-        </li>
         <br>
     
     {% endif %}

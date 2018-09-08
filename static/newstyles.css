@@ -45,9 +45,31 @@ body {
     margin-right: 350px;
     margin-left: 350px;
 }
+.bg-2 {
+    background: #2d2d30;
+    color: #bdbdbd;
+    border-radius: 25px;
+    margin-top: 200px;
+    margin-right: 350px;
+    margin-left: 350px;
+}
+.bg-3 {
+    background: #2d2d30;
+    color: #bdbdbd;
+    border-radius: 25px;
+    margin-top: 100px;
+    margin-bottom: auto;
+    margin-right: 350px;
+    margin-left: 350px;
+}
 .grid-container {
     text-align: center
   } 
-p.userlink {
-    text-align: center;
+.thumbnail {
+    background: #2d2d30;
+    color: #bdbdbd
+}
+.buttontext {
+    color: black;
+    
   } 

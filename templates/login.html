@@ -2,9 +2,18 @@
 {% extends "newnewbase.html" %}
 
 {% block content %}
-
+<style>
+    .bg-2 {
+        background: #2d2d30;
+        color: #bdbdbd;
+    }
+    .bg-2 h3 {color: #fff;}
+    .bg-2 p {font-style: italic;}
+    </style>
 <h1>Login</h1>
 <hr />
+<div class="bg-2">
+    <div class="container">
   <form method="post">
   <hr />
     <table>
@@ -30,9 +39,9 @@
 
     {% endwith %}
     </table>
-    <input type="submit" value="Login">
+    <input type="submit" class="buttontext" value="Login">
 </form>
 
-<p>Need to Signup? <a href="/signup">Make a New Account</a></p>
+<p>Need to sign up? <a href="/signup">Make a New Account</a></p>
 
 {% endblock %}
