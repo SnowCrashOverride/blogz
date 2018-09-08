@@ -18,34 +18,16 @@
     color: #fff !important;
 }
 
-/* The active link */
-.navbar-nav li.active a {
-    color: #fff !important;
-    background-color:#29292c !important;
-}
-
 /* Remove border color from the collapsible button */
 .navbar-default .navbar-toggle {
     border-color: transparent;
 }
 
-/* Dropdown */
-.open .dropdown-toggle {
-    color: #fff ;
-    background-color: #555 !important;
+h1 {
+    text-align: center
 }
 
-/* Dropdown links */
-.dropdown-menu li a {
-    color: #000 !important;
-}
-
-/* On hover, the dropdown links will turn red */
-.dropdown-menu li a:hover {
-    background-color: red !important;
-} 
 body {
-    background-image: url("http://rukodel.co/wp-content/uploads/acs-website-background-building-e1472862899804-with-images.jpg"); 
     background-color: lightgrey;
     background-position: left;
     background-size: cover;
@@ -55,3 +37,17 @@ body {
    /* margin-right: 100px;
     margin-left: 100px;*/
 }
+.bg-1 {
+    background: #2d2d30;
+    color: #bdbdbd;
+    border-radius: 25px;
+    margin-top: 100px;
+    margin-right: 350px;
+    margin-left: 350px;
+}
+.grid-container {
+    text-align: center
+  } 
+p.userlink {
+    text-align: center;
+  } 

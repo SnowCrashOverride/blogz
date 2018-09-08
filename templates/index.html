@@ -1,7 +1,7 @@
-{% extends "newbase.html" %}
+{% extends "newnewbase.html" %}
 
 {% block content %}
-<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles.css') }}">
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='newstyles.css') }}">
     <h1>Users</h1>
 
     <hr />
@@ -10,14 +10,19 @@
     <p>No albums yet</p>
     {% else %}
 
+
         <li>
+            
             {% for owner in users %}
-            <li><a href="music?user={{ owner.id }}"><h2>{{ owner.username }}</h2></li>
+            <li>    
+                <div class="userlink"></div>
+                    <a href="music?user={{ owner.id }}"><h2>{{ owner.username }}</h2></li>
+                </div>
             <br>
             {% endfor %}
         </li>
         <br>
-
+    
     {% endif %}
 
 {% endblock %}

@@ -2,28 +2,36 @@
 
 
 
-{% block content %}
+{% block content %} 
 
-    <h1>musics</h1>
+
+    <h1>user's albums</h1>
+
+
 
     {% if musics_by|length == 0 %}
     <p>No musics</p>
     {% else %}
-
+    
     
         {% for music in musics_by %}
-        <footer>
-        <a href='/music?id={{ music.id }}' >
-            <h2 type='text' name='title' value='{{ music.title }}'>
-            {{ music.title }}</h2></a>
-          
-            <h2><img src = "{{music.cover}}" style=width:200px;height:200px;> </h2>
-            <h5> {{music.rating}}</h5>
-            <h5>{{ music.date }}</h5>
-                
-            <em> added by </em><em type='text' name='owner' value='{{ music.owner.username }}'>
-                <a href='/music?user={{ music.owner.id }}' >{{ music.owner.username }}</a></em>
-        <br>            
+        <div class="grid-container">
+                <div class="col-sm-3">
+                    <div class="thumbnail">
+                        <div class="left">
+                            <!<a href='/music?id={{ music.id }}' ></a>
+                                <h2 type='text' name='artist' value='{{ music.artist }}'>
+                                        {{ music.artist }}</h2></a>
+                                <h2 type='text' name='title' value='{{ music.title }}'>
+                                    {{ music.title }}</h2></a>
+                                <h2><img src = "{{music.cover}}" style=width:200px;height:200px;> </h2>
+                                <h5> {{music.rating}}</h5>
+                                <h5>{{ music.date }}</h5>
+                                <em> added by </em><em type='text' name='owner' value='{{ music.owner.username }}'>
+                                    <a href='/music?user={{ music.owner.id }}' >{{ music.owner.username }}</a></em>
+                        </div>
+                </div>
+            </div>        
         </footer>        
         {% endfor %}
     
