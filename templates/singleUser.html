@@ -1,4 +1,4 @@
-{% extends "newbase.html" %}
+{% extends "newnewbase.html" %}
 
 
 
@@ -18,7 +18,7 @@
             {{ music.title }}</h2></a>
           
             <h2><img src = "{{music.cover}}" style=width:200px;height:200px;> </h2>
-            <h5><!{{ music.rating }}</h5>
+            <h5> {{music.rating}}</h5>
             <h5>{{ music.date }}</h5>
                 
             <em> added by </em><em type='text' name='owner' value='{{ music.owner.username }}'>

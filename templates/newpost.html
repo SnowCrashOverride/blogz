@@ -1,4 +1,4 @@
-{% extends 'newbase.html' %}
+{% extends 'newnewbase.html' %}
 {% block content %}
 <h1>Add an Album</h1>
 <form action ='/newpost' method = 'post'>
@@ -37,9 +37,9 @@
         <tr>
             <td>
             <label>
-               <! Rating:</br>
-               <! <input type="text" name='title' value='{{rating}}'/>
-               <! <p class="error">{{rating_error}}</p>
+                Rating:</br>
+                <input type="text" name='rating' id="rating1" value='{{rating}}'/>
+                <p class="error">{{rating_error}}</p>
             </label>
             </td>
         </tr>

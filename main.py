@@ -15,16 +15,16 @@ class Music(db.Model):
     title = db.Column(db.String(120))
     artist = db.Column(db.String(120))
     cover = db.Column(db.String(500))
-    """rating = db.Column(db.String(120))"""
+    rating = db.Column(db.String(120))
     date = db.Column(db.String(120))
     owner_id = db.Column(db.Integer, db.ForeignKey('user.id'))
    
 
-    def __init__(self, title, artist, cover, date, owner):
+    def __init__(self, title, artist, cover, rating, date, owner):
         self.title = title
         self.artist = artist
         self.cover = cover
-       # self.rating = rating
+        self.rating = rating
         self.date = date
         self.owner = owner
         
@@ -38,6 +38,8 @@ class User(db.Model):
     def __init__(self, username, password):
         self.username = username
         self.password = password
+
+
 
 
 
@@ -162,7 +164,7 @@ def new_post():
         music_title = request.form['title']
         music_artist = request.form['artist']
         music_cover = request.form['cover']
-        #music_rating = request.form['rating']
+        music_rating = request.form['rating']
         music_date = request.form['date']
 
         
@@ -180,7 +182,7 @@ def new_post():
         
         else: 
             music_owner = User.query.filter_by(username=session['username']).first()
-            new_post = Music(music_title, music_artist, music_cover,  music_date, music_owner) # user.id
+            new_post = Music(music_title, music_artist, music_cover, music_rating, music_date, music_owner) # user.id
             db.session.add(new_post)
             db.session.commit()
             just_posted = db.session.query(Music).order_by(Music.id.desc()).first()

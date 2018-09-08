@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+    <html lang="en">
+    <head>
+        <title>Good Musics</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='newstyles.css') }}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    
+
+<body>
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container-fluid">
+                  <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">goodmusics</a>
+                  </div>
+                  <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                      <li><a href='/' name='index'>Users</a></li>
+                      <li><a href='/music' name='music'>Albums</a></li>
+                      <li><a href='/newpost' name='newpost'>Add an Album</a></li>
+                      <li><a href='/login' name='login'>Login</a></li>
+                      <li><a href='/logout' name='logout'>Logout</a></li>
+                      <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </nav>
+
+
+
+
+
+</body>
+{% block content %}
+    
+{% endblock %}
+<hr />
+</html>
+
